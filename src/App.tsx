@@ -35,14 +35,14 @@ const ArticleColumn: React.FC<{ item: IArticle }> = ({ item }) => {
     if (title === "") setTitle(item.title.trim())
   }
 
-  return <div className={`flex justify-between w-1/2 m-2 rounded-lg bg-green-400 overflow-hidden col-span-${item.width}`}>
-    <div className="flex">
+  return <div className={`w-1/2 m-2 rounded-lg bg-green-400 overflow-hidden col-span-${item.width}`}>
+    <a className="flex flex-wrap">
       <img className="h-24" src={item.imageUrl} />
       {!editingTitle
-        ? <h1 className="self-start m-2">{title}</h1>
-        : <textarea autoFocus value={title} onChange={(e) => setTitle(e.currentTarget.value.trim())} className="self-start m-2" />}
-    </div>
-    <button className="rounded-full bg-green-500 self-center px-4 mr-2" onClick={() => editingTitle ? onDone() : setEditingTitle(true)}>
+        ? <h1 className="self-start m-2 text-overflow">{title}</h1>
+        : <textarea autoFocus value={title} onChange={(e) => setTitle(e.currentTarget.value)} className="self-start m-2" />}
+    </a>
+    <button className="rounded-full bg-green-500 self-end px-4 m-2" onClick={() => editingTitle ? onDone() : setEditingTitle(true)}>
       {editingTitle ? "confirm" : "edit"}
     </button>
   </div>
